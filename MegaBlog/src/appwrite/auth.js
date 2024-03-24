@@ -1,4 +1,4 @@
-import conf from '../conf.js'; // Importing configuration settings from conf.js
+import conf from '../conf/conf.js' // Importing configuration settings from conf.js
 import {Client, Account, ID} from 'appwrite'; // Importing Client, Account, and ID modules from 'appwrite' library
 
 export class AuthService {
