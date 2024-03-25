@@ -1,4 +1,4 @@
-import conf from '../conf/conf.js' // Importing configuration settings from conf.js
+import conf from '../conf/conf' // Importing configuration settings from conf.js
 import {Client, Account, ID} from 'appwrite'; // Importing Client, Account, and ID modules from 'appwrite' library
 
 export class AuthService {
@@ -48,15 +48,15 @@ export class AuthService {
   }
 
   // Method to get the current user's details
-  async getCurrentSUser () {
+  async getCurrentUser() {
     try {
-      await this.account.get (); // Getting the current user's details using the Account class's 'get' method
+      const userData = await this.account.get(); // Updated to await the user data
+      return userData; // Returning user data if available
     } catch (error) {
-      console.log ('Appwrite service :: getCurrentUser :: error', error); // Logging an error if fetching user details fails
+      console.log('Appwrite service :: getCurrentUser :: error', error);
+      throw error; // Throwing an error if fetching user details fails
     }
-    return null; // Returning null if no user is found
   }
-
   // Method to log out the current user
   async logout () {
     try {
@@ -69,4 +69,4 @@ export class AuthService {
 
 const authService = new AuthService (); // Creating a new instance of the AuthService class
 
-export default AuthService; // Exporting the AuthService class
+export default authService; // Exporting the AuthService class

@@ -1,37 +1,41 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch} from 'react-redux';
-import './App.css';
-import AuthService from './appwrite/auth';
-import {login, logout} from './store/authSlice';
-import {Footer, Header} from './components';
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import "./App.css";
+import authService from "./appwrite/auth.js";
+import { login, logout } from "./store/authSlice";
+import { Footer, Header } from "./components";
+import { Outlet } from 'react-router-dom'
 
-function App () {
-  const [loading, setLoading] = useState (true);
-  const dispatch = useDispatch ();
+function App() {
+  const [loading, setLoading] = useState(true); // State to manage loading status
+  const dispatch = useDispatch(); // Redux dispatch function
 
-  useEffect (() => {
-    AuthService.getCurrentUser ()
-      .then (userData => {
+  useEffect(() => {
+    // Effect hook to fetch current user data
+    authService
+      .getCurrentUser()
+      .then((userData) => {
         if (userData) {
-          dispatch (login ({userData}));
+          dispatch(login({ userData })); // Dispatch login action if user data is available
         } else {
-          dispatch (logout ());
+          dispatch(logout()); // Dispatch logout action if user data is not available
         }
       })
-      .finally (() => setLoading (false));
-  }, []);
+      .finally(() => setLoading(false)); // Update loading status after fetching user data
+  }, []); // Empty dependency array means this effect runs only once after initial render
 
-  return !loading ? (
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-      <div className='w-full block'>
-        <Header />
+  return !loading ? ( // Render content only when loading is false
+    <div className="min-h-screen flex - flexwrap  content-between bg-gray-400">
+      <div className="w-full block">
+        <Header /> {/* Render Header component */}
         <main>
-        TODO:  //Outlet
+        TODO: {/* Placeholder for Outlet component */}
         </main>
-        <Footer />
+        <Footer /> {/* Render Footer component */}
       </div>
     </div>
-  ) : null
+  ) : null; // Render nothing while loading is true
 }
 
 export default App;
+
