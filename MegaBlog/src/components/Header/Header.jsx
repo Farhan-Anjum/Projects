@@ -1,6 +1,6 @@
 // Importing necessary modules and components from React and other files
 import React from "react";
-import { Container, Logo, LogoutBtn } from "../index"; // Importing components from another file
+import { container, Logo, LogoutBtn } from "../index"; // Importing components from another file
 import { Link } from "react-router-dom"; // Importing Link component from react-router-dom
 import { useSelector } from "react-redux"; // Importing useSelector hook from react-redux for accessing state
 import { useNavigate } from "react-router-dom"; // Importing useNavigate hook from react-router-dom for navigation
@@ -43,7 +43,7 @@ function Header() {
   // JSX for rendering the header
   return (
     <header className='py-3 shadow bg-gray-500'>
-      <Container> {/* Container component for layout */}
+      <container> {/* Container component for layout */}
         <nav className='flex'>
           <div className='mr-4'>
             <Link to='/'>
@@ -70,7 +70,7 @@ function Header() {
             )}
           </ul>
         </nav>
-      </Container>
+      </container>
     </header>
   )
 }
